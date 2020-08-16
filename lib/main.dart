@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -24,9 +25,51 @@ class BmiMain extends StatefulWidget {
 }
 
 class _BmiMainState extends State<BmiMain> {
+  final _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(title: Text('비만도 계산기'),),
+      body: Container(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          key: _formkey,
+          child: Column(
+            children: <Widget>[
+              TextFormField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: '키',
+                ),
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(
+                height: 16.0,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: '몸무게',
+                ),
+                keyboardType: TextInputType.number,
+              ),
+              Container(
+                margin: const EdgeInsets.only(top:16.0),
+                alignment: Alignment.centerRight,
+                child: RaisedButton(
+                  onPressed: () {
+                    if(_formkey.currentState.validate()) {
+                      //검증 시 처리
+                    }
+                  },
+                  child: Text('결과 보기'),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 
